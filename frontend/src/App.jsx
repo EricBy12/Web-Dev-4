@@ -15,6 +15,10 @@ function App() {
 
   const count = notes.length;
 
+  function deleteNote(id) {
+    fetch(`/api/notes/${id}`, { method: "DELETE" }).then(load);
+  }
+
   function submit(event) {
     event.preventDefault();
 
@@ -52,6 +56,9 @@ function App() {
           <li key={note.id}>
             {note.text}
             {note.url && <a href={note.url}> (attachment)</a>}
+            <button type="button" onClick={() => deleteNote(note.id)}>
+              Delete
+            </button>
           </li>
         ))}
       </ul>
